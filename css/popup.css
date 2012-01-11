@@ -1,0 +1,25 @@
+#poupTable
+{
+ width: 250px;
+ border-spacing:0px;
+ text-Align:center;
+}
+
+.popupColumn
+{
+ border-right:2px solid  #3F602B;
+ width:100px;
+}
+
+.rankIamge
+{
+ width:12px;
+ height:12px;
+}
+
+#similarsiteLink
+{
+ color:#466B9A;
+ text-decoration:underline;
+ cursor:pointer;
+}
