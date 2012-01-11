@@ -10,9 +10,7 @@
       "128": "images/icon128.png",
       "48": "images/icon48.png"
    },
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDY9516UnHiIaqoirYQpc4DnCmbPZ8UQqBEFJoMJ6rN9MddqWcA0dW2wm2kFytbtxO1gw1R1Z8l29OVCG5hLgU8/fhX0gFdmeSwFJbyVB0OXMyt4sMmEJgzx6kT2o/eSgxF/H2jL8+DY8GRXJwuMaQ+Knjl0O+WibB44dnAN6+NEwIDAQAB",
    "name": "PageRank Fast",
    "permissions": [ "tabs", "http://*/" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "2.1"
 }
