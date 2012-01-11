@@ -1,8 +1,7 @@
 {
    "background_page": "background.html",
    "browser_action": {
-      "default_icon": "images/0.png",
-      "default_title": "Page Rank"
+      "default_icon": "images/0.png"
    },
    "description": "Fast and simple PageRank extension for Google Chrome.",
    "icons": {

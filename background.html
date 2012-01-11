@@ -1,15 +1,15 @@
 <!doctype html>
 <html>
-<script > 
+<script>
 
-  /*
+/*
 © 2009 K&I Labs
 Auther:Hrishikesh Kale 
 kalehrishi@gmail.com
  * The Initial Developer of the Original Code is K&I Labs.
  * Portions created by the Initial Developer are Copyright (C) 2005-2009
  * the Initial Developer. All Rights Reserved.
-*/
+ */
 
 function trim(str, chars) {
     return ltrim(rtrim(str, chars), chars)
@@ -66,18 +66,11 @@ function setIcon(path, tabId) {
         'tabId': tabId
     })
 }
-function setTitle(msg, tabId) {
-    chrome.browserAction.setTitle({
-        'title': msg,
-        'tabId': tabId
-    })
-}
 var previous_url = "";
 var current_url = "";
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     var pr = getPageRank(tab.url);
     setBadge(pr, tab.id);
-    setTitle("Page Rank :" + pr, tab.id);
     setIcon("images/" + pr + ".png", tab.id)
 });
       
