@@ -1,5 +1,5 @@
 <!doctype html>
-    <html>
+<html>
 <script > 
 
   /*
@@ -11,8 +11,75 @@ kalehrishi@gmail.com
  * the Initial Developer. All Rights Reserved.
 */
 
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('4 J(a,3){7 H(C(a,3),3)}4 H(a,3){3=3||"\\\\s";7 a.D(z M("^["+3+"]+","g"),"")}4 C(a,3){3=3||"\\\\s";7 a.D(z M("["+3+"]+$","g"),"")}4 f(b){7(b<16?"0":"")+b.17(16)}4 P(b){5 c=f(b>>>18);c+=f(b>>>16&t);c+=f(b>>>8&t);7 c+f(b&t)}4 K(b){14(5 c=13,d=0;d<b.B;d++){5 y="11 12 1a 1f 1g\'S 10 1e 1d. 1b, I\'m 1c 1h U, T.";c^=y.G(d%y.B)^b.G(d);c=c>>>V|c<<9}7 P(c)}4 O(p){5 R=K(p.h("#")[0].h("//")[1]);5 F="Z://Y.X.W/19?1o=1B-1C&1A=8"+R+"&1x=Q&q=1i:"+p.h("//")[1];5 i=z 1G();i.1D("1w",F,1n);i.1m();5 o="N/A";1k(i.E.B<15){o=i.E.h(":")[2].h("\\n")[0]}1s{o="0"}7 J(o)}4 L(j,6){l.u.1r({\'1v\':j,\'6\':6})}4 v(k,6){1q.1t(k);l.u.v({\'k\':k,\'6\':6})}4 w(j,6){l.u.w({\'1u\':j,\'6\':6})}5 1p="";5 1j="";l.1l.1F.1H(4(6,1I,e){5 r=O(e.p);L(r,e.x);w("1E Q :"+r,e.x);v("1y/"+r+".1z",e.x)});',62,107,'|||chars|function|var|tabId|return|||str||||tab|toHex8||split|xhr|msg|path|chrome|||pageRank|url||pr||255|browserAction|setIcon|setTitle|id|HASH_SEED_|new||length|rtrim|replace|responseText|query|charCodeAt|ltrim||trim|awesomeHash|setBadge|RegExp||getPageRank|hexEncodeU32|Rank|hash||scammer|you|23|com|google|toolbarqueries|http|TERMS|Mining|PageRank|16909125|for|||toString|24|tbr|is|Yes|talking|SERVICE|OF|AGAINST|GOOGLE|to|info|current_url|if|tabs|send|false|client|previous_url|console|setBadgeText|else|log|title|text|GET|features|images|png|ch|navclient|auto|open|Page|onUpdated|XMLHttpRequest|addListener|changeInfo'.split('|'),0,{}))
-
+function trim(str, chars) {
+    return ltrim(rtrim(str, chars), chars)
+}
+function ltrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("^[" + chars + "]+", "g"), "")
+}
+function rtrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("[" + chars + "]+$", "g"), "")
+}
+function toHex8(b) {
+    return (b < 16 ? "0" : "") + b.toString(16)
+}
+function hexEncodeU32(b) {
+    var c = toHex8(b >>> 24);
+    c += toHex8(b >>> 16 & 255);
+    c += toHex8(b >>> 8 & 255);
+    return c + toHex8(b & 255)
+}
+function awesomeHash(b) {
+    for (var c = 16909125, d = 0; d < b.length; d++) {
+        var HASH_SEED_ = "Mining PageRank is AGAINST GOOGLE'S TERMS OF SERVICE. Yes, I'm talking to you, scammer.";
+        c ^= HASH_SEED_.charCodeAt(d % HASH_SEED_.length) ^ b.charCodeAt(d);
+        c = c >>> 23 | c << 9
+    }
+    return hexEncodeU32(c)
+}
+function getPageRank(url) {
+    var hash = awesomeHash(url.split("#")[0].split("//")[1]);
+    var query = "http://toolbarqueries.google.com/tbr?client=navclient-auto&ch=8" + hash + "&features=Rank&q=info:" + url.split("//")[1];
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", query, false);
+    xhr.send();
+    var pageRank = "N/A";
+    if (xhr.responseText.length < 15) {
+        pageRank = xhr.responseText.split(":")[2].split("\n")[0]
+    } else {
+        pageRank = "0"
+    }
+    return trim(pageRank)
+}
+function setBadge(msg, tabId) {
+    chrome.browserAction.setBadgeText({
+        'text': msg,
+        'tabId': tabId
+    })
+}
+function setIcon(path, tabId) {
+    console.log(path);
+    chrome.browserAction.setIcon({
+        'path': path,
+        'tabId': tabId
+    })
+}
+function setTitle(msg, tabId) {
+    chrome.browserAction.setTitle({
+        'title': msg,
+        'tabId': tabId
+    })
+}
+var previous_url = "";
+var current_url = "";
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+    var pr = getPageRank(tab.url);
+    setBadge(pr, tab.id);
+    setTitle("Page Rank :" + pr, tab.id);
+    setIcon("images/" + pr + ".png", tab.id)
+});
       
 </script>
 <body>
